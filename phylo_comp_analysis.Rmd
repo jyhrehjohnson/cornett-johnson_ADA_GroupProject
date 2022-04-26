@@ -1,0 +1,12 @@
+---
+title: "Phylogenetic Comparative Analysis Package and Vignette"
+output: rmarkdown::html_vignette
+date: 04/26/2022
+vignette: >
+  %\VignetteIndexEntry{Phylogenetic Comparative Analysis Package and Vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+*Collaborators: Savvy Cornett & Jyhreh Johnson*
+
+## Introduction
