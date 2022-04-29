@@ -20,15 +20,17 @@ require(tidyverse)
 require(rentrez)
 require(devtools)
 require(usethis)
-require(devtools)
 require(roxygen2)
 require(withr)
 ```
 
 ```{r}
+#load in the data
 f_name <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_orthologs.csv"
 
+#use the function to read in the data and create the r dataset
 sonic <- read_file(f_name)
 ```
+
 ## References\ 
 Pennell, M. W., & Harmon, L. J. (2013). An integrative view of phylogenetic comparative methods: Connections to population genetics, community ecology, and paleobiology: Integrative comparative methods. Annals of the New York Academy of Sciences, 1289(1), 90–105. <https://doi.org/10.1111/nyas.12157>\
