@@ -10,3 +10,6 @@ vignette: >
 *Collaborators: Savvy Cornett & Jyhreh Johnson*
 
 ## Introduction
+For the purpose of this project, 
+
+
