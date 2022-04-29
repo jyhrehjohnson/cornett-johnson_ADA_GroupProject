@@ -10,8 +10,14 @@ vignette: >
 *Collaborators: Savvy Cornett & Jyhreh Johnson*
 
 ## Background
-Phylogenetic Comparative Analysis or Phylogentic Comparative Methods (PCMs) are a set of statistical methods that are used by biologist, geneticist, and anthropologists to analyze phylogenetic trees and track/presents species traits (Pennell & Harmon, 2013). 
+Phylogenetic Comparative Analysis or Phylogentic Comparative Methods (PCMs) are a set of statistical methods that are used by biologist, geneticist, and anthropologists to analyze phylogenetic trees and track/presents species traits (Pennell & Harmon, 2013). The purpose of this method is to utilize the phylogenetic trees to address the evolutionary hypotheses and diversification of species.
+
+## Introduction
+Within this package, we have included a data set of 
 
 
-## References 
+
+
+
+## References
 Pennell, M. W., & Harmon, L. J. (2013). An integrative view of phylogenetic comparative methods: Connections to population genetics, community ecology, and paleobiology: Integrative comparative methods. Annals of the New York Academy of Sciences, 1289(1), 90–105. https://doi.org/10.1111/nyas.12157
