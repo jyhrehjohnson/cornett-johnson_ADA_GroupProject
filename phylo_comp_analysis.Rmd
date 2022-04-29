@@ -1,7 +1,7 @@
 ---
 title: "Phylogenetic Comparative Analysis Package and Vignette"
 output: rmarkdown::html_vignette
-date: 04/26/2022
+date: "`r Sys.Date()`"
 vignette: >
   %\VignetteIndexEntry{Phylogenetic Comparative Analysis Package and Vignette}
   %\VignetteEngine{knitr::rmarkdown}
@@ -10,11 +10,21 @@ vignette: >
 *Collaborators: Savvy Cornett & Jyhreh Johnson*
 
 ## Background
-<<<<<<< HEAD
 Phylogenetic Comparative Analysis or Phylogenetic Comparative Methods (PCMs) are a set of statistical methods that are used by biologist, geneticist, and anthropologists to analyze phylogenetic trees and track/presents species traits (Pennell & Harmon, 2013).\
 
 ## Introduction
 In this package, we have included a dataset for the Sonic Hedgehog vertebrate orthologs (SHH_orthologs.csv) from the NIH database. We also have two functions: one for making a phylogenetic tree, and the other for doing a phylogenetic scatterplot.\
+
+```{r, Preliminaries}
+require(tidyverse)
+require(rentrez)
+require(devtools)
+require(usethis)
+require(devtools)
+require(roxygen2)
+require(withr)
+```
+
 
 
 ## References\ 
