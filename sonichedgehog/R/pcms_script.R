@@ -19,5 +19,9 @@ read_file <- function(f_name){
   return(data)
 }
 
+# built-in data set: SHH_Carnivora.csv (Carnivore orthologs)
+SHH_Carn <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_orthologs_Carnivora.csv"
+
+
 #pcms_tree <- function()
 #pcms_plot <- function()
