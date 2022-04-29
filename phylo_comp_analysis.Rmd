@@ -15,7 +15,7 @@ Phylogenetic Comparative Analysis or Phylogenetic Comparative Methods (PCMs) are
 ## Introduction
 In this package, we have included a dataset for the Sonic Hedgehog vertebrate orthologs (SHH_orthologs.csv) from the NIH database. We also have two functions: one for making a phylogenetic tree, and the other for doing a phylogenetic scatterplot.\
 
-```{r preliminaries, message=FALSE, warning=FALSE}
+```{r Preliminaries, message=FALSE, warning=FALSE}
 require(tidyverse)
 require(rentrez)
 require(devtools)
@@ -25,7 +25,10 @@ require(roxygen2)
 require(withr)
 ```
 
+```{r}
+f_name <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_orthologs.csv"
 
-
+sonic <- read_file(f_name)
+```
 ## References\ 
 Pennell, M. W., & Harmon, L. J. (2013). An integrative view of phylogenetic comparative methods: Connections to population genetics, community ecology, and paleobiology: Integrative comparative methods. Annals of the New York Academy of Sciences, 1289(1), 90–105. <https://doi.org/10.1111/nyas.12157>\

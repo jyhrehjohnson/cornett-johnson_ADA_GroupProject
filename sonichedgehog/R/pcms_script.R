@@ -1,7 +1,6 @@
-# Hello, world!
-#
-# This is an example function named 'hello' 
-# which prints 'Hello, world!'.
+# Phylogenetic Comparative Analysis
+# This rscript contains the functions we created for our PCMs
+# package.
 #
 # You can learn more about package authoring with RStudio at:
 #
@@ -13,6 +12,11 @@
 #   Check Package:             'Cmd + Shift + E'
 #   Test Package:              'Cmd + Shift + T'
 
-hello <- function() {
-  print("Hello, world!")
+#Create a function that reads in the file information
+read_file <- function(f_name){
+  data <-read_csv(f_name, col_names = TRUE)
+  return(data)
 }
+
+#pcms_tree <- function()
+#pcms_plot <- function()
