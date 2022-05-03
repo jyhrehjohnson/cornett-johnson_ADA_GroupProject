@@ -10,11 +10,13 @@ vignette: >
 *Collaborators: Savvy Cornett & Jyhreh Johnson*
 
 ## Background
-Phylogenetic Comparative Analysis or Phylogenetic Comparative Methods (PCMs) are a set of statistical methods that are used by biologist, geneticist, and anthropologists to analyze phylogenetic trees and track/presents species traits (Pennell & Harmon, 2013).\
+Phylogenetic Comparative Analysis or Phylogenetic Comparative Methods (PCMs) are a set of statistical methods used by biologist, geneticist, and anthropologists to analyze phylogenetic trees and track/present species traits (Pennell & Harmon, 2013).\
 
 ## Introduction
 In this package, we have included a dataset for the Sonic Hedgehog vertebrate orthologs (SHH_orthologs.csv) from the NIH database. We also have two functions: one for making a phylogenetic tree, and the other for doing a phylogenetic scatterplot.\
 
+## Preliminaries
+Load in the necessary libraries for the package. 
 ```{r Preliminaries, message=FALSE, warning=FALSE}
 require(tidyverse)
 require(rentrez)
@@ -26,7 +28,8 @@ require(withr)
 
 ```{r}
 #load in the data
-f_name <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_orthologs.csv"
+f_name <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_orthologs_Carnivora.csv"
+#"https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_orthologs.csv" (switched out for the above)
 
 #use the function to read in the data and create the r dataset
 sonic <- read_file(f_name)
