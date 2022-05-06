@@ -25,8 +25,8 @@ require(withr) # to make package
 # for our package
 require(tidyverse)
 require(ape) #phylo
-require(BiocManager) # to get ggTree package from bioconductor
-BiocManager::install("ggtree") # library ggTree package 
+require(BiocManager) # to get packages from bioconductor (ie package not on CRAN)
+BiocManager::install("ggtree") # library ggTree package. will give two prompts, answer "all" and "yes" to them respectively
 ```
 
 ```{r}
