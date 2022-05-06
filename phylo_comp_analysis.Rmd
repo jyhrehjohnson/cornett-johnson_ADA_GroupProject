@@ -16,12 +16,15 @@ Phylogenetic Comparative Analysis or Phylogenetic Comparative Methods (PCMs) are
 In this package, we have included a dataset for the Sonic Hedgehog vertebrate orthologs (SHH_orthologs.csv) from the NIH database. We also have two functions: one for making a phylogenetic tree, and the other for doing a phylogenetic scatterplot.\
 
 ```{r Preliminaries, message=FALSE, warning=FALSE}
+require(devtools) # to make package
+require(usethis) # to make package
+require(roxygen2) # to make package
+require(withr) # to make package
+# for our package
 require(tidyverse)
-require(rentrez)
-require(devtools)
-require(usethis)
-require(roxygen2)
-require(withr)
+require(ape) #phylo
+require(BiocManager) # to get ggTree package from bioconductor
+BiocManager::install("ggtree") # library ggTree package 
 ```
 
 ```{r}
