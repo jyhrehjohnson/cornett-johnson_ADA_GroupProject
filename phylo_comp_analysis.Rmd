@@ -40,3 +40,5 @@ sonic <- read_file(f_name)
 
 ## References\ 
 Pennell, M. W., & Harmon, L. J. (2013). An integrative view of phylogenetic comparative methods: Connections to population genetics, community ecology, and paleobiology: Integrative comparative methods. Annals of the New York Academy of Sciences, 1289(1), 90–105. <https://doi.org/10.1111/nyas.12157>\
+
+Yu, G., Smith, D. K., Zhu, H., Guan, Y., & Lam, T. T. (2017). ggtree: An r package for visualization and annotation of phylogenetic trees with their covariates and other associated data. Methods in Ecology and Evolution, 8(1), 28–36. <https://doi.org/10.1111/2041-210X.12628>\
