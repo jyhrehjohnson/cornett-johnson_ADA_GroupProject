@@ -6,9 +6,14 @@ require(devtools)
 require(roxygen2)
 require(withr)
 require(ape)
+require(phangorn)
+require(phytools) 
+require(geomorph)
 
 f <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_orthologs_Carnivora.csv"
 d <- read_csv(f, col_names = TRUE)
+
+
 # read in sequences from .fasta file
 fas <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_Carnivora.fasta"
 #for reading multiple AA sequences from msa package
@@ -21,10 +26,20 @@ fas_AAch <- as.character.AAbin(fas_AAbin) #converting AAbin to character strings
 
 # somehow at this step, i'm getting a lot of data loss (ie only one sequence still has AA in it when i get to the matrix)
 fas_align <- as.alignment(fas_AAch)
-fas_AAmatrix <- as.matrix(fas_AAch) # converting alignment to matrix
+fas_AAmatrix <- as.matrix(fas_align) # converting alignment to matrix
  # converting from AAbin to alignment format
 AAbin_labs <- as.matrix(labels(fas_AAbin)) # extraction of the species names
+fas_AAbin <- dist.aa(fas_AAbin)
+tree <- nj(fas_AAbin)
+ggt<-ggtree(tree, cex = 0.8, aes(color=branch.length)) +
+  scale_color_continuous(high='lightskyblue1',low='coral4') +
+  geom_tiplab(align=TRUE, size=2) +
+  geom_treescale(y = - 5, color = "coral4", fontsize = 4)
+ggt
 
+#Plot the maximum likelihood
+plotTree(tree, fsize=0.8,lwd=1,offset=1) #Plot the ML, set font size, create space so nodes aren't on top of each other 
+nodelabels(tree$node.label, adj = c(1, 0), frame = "none") #label the nodes
 
 ## an<-as.alignment(nbin)  #converting DNAbin to alignment format
 ## nm<-as.matrix(an)       #converting alignment to matrix
