@@ -10,10 +10,15 @@ require(phangorn)
 require(phytools) 
 require(geomorph)
 
+# for installing packages from bioconductor
+BiocManager::install("ggtree") # install ggTree package. will give two prompts, answer "all" and "yes" to them respectively
+BiocManager::install("msa") # install "msa" package.  will give two prompts, answer "all" and "yes" to them respectively
+
+
 f <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_orthologs_Carnivora.csv"
 d <- read_csv(f, col_names = TRUE)
 
-
+#By Hand ----
 # read in sequences from .fasta file
 fas <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_Carnivora.fasta"
 #for reading multiple AA sequences from msa package
@@ -25,18 +30,20 @@ fas_AAbin <- as.AAbin(fas_msa, show.aa = TRUE, check.names = TRUE) # #read align
 fas_AAch <- as.character.AAbin(fas_AAbin) #converting AAbin to character strings
 fas_align <- as.alignment(fas_AAch)
 fas_AAmatrix <- as.matrix(fas_align) # converting alignment to matrix
- # converting from AAbin to alignment format
+# converting from AAbin to alignment format
 AAbin_labs <- as.matrix(labels(fas_AAbin)) # extraction of the species names
 fas_AAbin <- dist.aa(fas_AAbin)
 tree <- nj(fas_AAbin)
 
+# plot the NJ tree ---- 
 ggt <-ggtree(tree, cex = 0.8, aes(color = branch.length)) +
   scale_color_continuous(high='green',low='blue') +
   geom_tiplab(align = TRUE, size = 4) +
   geom_treescale(y = - 5, color = "coral4", fontsize = 4)
 ggt
 
-#Plot the maximum likelihood
+
+#Plot the maximum likelihood ---
 plotTree(tree, fsize=0.8,lwd=1,offset=1) #Plot the ML, set font size, create space so nodes aren't on top of each other 
 nodelabels(tree$node.label, adj = c(1, 0), frame = "none") #label the nodes
 
@@ -49,6 +56,8 @@ nodelabels(tree$node.label, adj = c(1, 0), frame = "none") #label the nodes
 # tree<-nj(dnbin)
 
 
+
+# troubleshooting ----
 #this doesn't work, but the above version does?????
 fas_msa <- msa(file, method = c("Muscle"), type = "protein", order=c("aligned", "input")) # multiple sequence alignment from msa package 
 fas_msa %>% as.AAbin(show.aa = TRUE, check.names = TRUE)# #read aligned data, converting to AAbin
