@@ -32,7 +32,10 @@ require(ape) #phylo
 require(ggplot2)
 require(phangorn)
 require(phytools) 
+<<<<<<< HEAD
+=======
 # require(geomorph)
+>>>>>>> dcc95e63d8c822fe469a8c9a5de3ccc59019d629
 require(BiocManager) # to get packages from bioconductor (ie package not on CRAN)
 require(ggtree) # extension of ggplot to make phylo trees
 require(msa) # multiple sequence alignment
@@ -54,6 +57,9 @@ fast_file <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_AD
 fast <- f_file(fast_file)
 ```
 
+<<<<<<< HEAD
+## Creating Amino Acids (Polypeptide)
+=======
 ### **By Hand** Preparing Fasta data for phylogenetic analysis\
 1. convert the .fasta file data to a string of amino acids (AA), i.e., a literal polypeptide chain in code. Cool shit, i know!
 ```{r}
@@ -82,6 +88,7 @@ ggt
 
 
 ## Creating Amin Acids (Polypeptide)
+>>>>>>> dcc95e63d8c822fe469a8c9a5de3ccc59019d629
 ```{r}
 # pat <- pcms_AAtree(fast_file)
 ```

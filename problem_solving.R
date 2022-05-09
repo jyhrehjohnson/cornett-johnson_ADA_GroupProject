@@ -17,7 +17,6 @@ require(ggplot2)
 BiocManager::install("ggtree") # install ggTree package. will give two prompts, answer "all" and "yes" to them respectively
 BiocManager::install("msa") # install "msa" package.  will give two prompts, answer "all" and "yes" to them respectively
 
-
 f <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_orthologs_Carnivora.csv"
 d <- read_csv(f, col_names = TRUE)
 
