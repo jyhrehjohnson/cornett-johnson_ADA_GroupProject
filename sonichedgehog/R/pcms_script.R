@@ -23,7 +23,7 @@ read_file <- function(f_name){
 #SHH_Carn <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_orthologs_Carnivora.csv"
 
 # building a function to make a polypeptide (Amino Acid) sequence phylogenetic tree from data in fasta file
-pcms_AAtree <- function(f_name, ){
+pcms_AAtree <- function(f_name){
   #for reading multiple AA sequences from msa package
   fas <- readAAStringSet(f_name, format = "fasta", use.names = TRUE)
   #align the fasta file using MUSCLE algorithm: multiple sequence alignment from msa package 
@@ -35,7 +35,6 @@ pcms_AAtree <- function(f_name, ){
   base::as.matrix(fas) # converting alignment to matrix
   # talk to tony about fxn because piping the separate functions together doesn't work, 
   # worried this fxn won't work for the same reason
-  
 }
 
 
