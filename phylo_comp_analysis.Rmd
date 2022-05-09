@@ -28,7 +28,6 @@ require(ape) #phylo
 require(ggplot2)
 require(phangorn)
 require(phytools) 
-require(geomorph)
 require(BiocManager) # to get packages from bioconductor (ie package not on CRAN)
 BiocManager::install("ggtree") # install ggTree package. will give two prompts, answer "all" and "yes" to them respectively
 require(ggtree) # extension of ggplot to make phylo trees
@@ -52,7 +51,7 @@ fast_file <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_AD
 fast <- f_file(fast_file)
 ```
 
-## Creating Amin Acids (Polypeptide)
+## Creating Amino Acids (Polypeptide)
 ```{r}
 pat <- pcms_AAtree(fast_file)
 ```
