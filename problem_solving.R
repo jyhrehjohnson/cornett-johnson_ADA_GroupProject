@@ -60,13 +60,15 @@ nodelabels(tree$node.label, adj = c(1, 0), frame = "none") #label the nodes
 # troubleshooting ----
 #this doesn't work, but the above version does?????
 fas_msa <- msa(file, method = c("Muscle"), type = "protein", order=c("aligned", "input")) # multiple sequence alignment from msa package 
-fas_msa %>% as.AAbin(show.aa = TRUE, check.names = TRUE)# #read aligned data, converting to AAbin
-as.character.AAbin(fas_msa) #converting AAbin to character strings
+dist_fas_msa <- fas_msa %>% as.AAbin(show.aa = TRUE, check.names = TRUE) %>% 
+  dist.aa() # #read aligned data, converting to AAbin
+fas_msa <- fas_msa %>% as.AAbin(show.aa = TRUE, check.names = TRUE) %>% 
+  as.character.AAbin() %>% #converting AAbin to character strings
   as.alignment() %>% 
-  as.matrix() %>% 
-  dist.aa()
+  as.matrix()
+ 
 
-tree <- nj(fas_msa)
+tree <- nj(dist_fas_msa)
 
 # somehow at this step, i'm getting a lot of data loss (ie only one sequence still has AA in it when i get to the matrix)
 fas_align <- as.alignment(fas_AAch)

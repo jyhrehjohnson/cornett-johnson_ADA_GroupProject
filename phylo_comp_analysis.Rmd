@@ -9,6 +9,10 @@ vignette: >
 ---
 *Collaborators: Savvy Cornett & Jyhreh Johnson*
 
+```{r}
+source("~/Desktop/Applied-Data-Analysis/cornett-johnson_ADA_GroupProject/sonichedgehog/R/pcms_script.R")
+```
+
 ## Background
 Given all life on earth diverged from a common ancestor, we need a way to analyse those evolutionary relationships. We can do this by comparing the sequences--nucleotide for DNA and RNA, or amino acid (polypeptide) for protein--of genes from different species. This can be done with whole genomes or otherwise highly conserved genes in the genome to determine the evolutionary relationship of the species, or with just a single gene/protein from multiple species to determine the relationship and amount of conservation for just that gene/protein. These comparisons can be visualized as a phylogenetic tree, which uses relative branch lengths to indicate time since species diverged from their common ancestor based on the number of substitutions (silent/missense/nonsense mutations) within the sequence being compared. Phylogenetic Comparative Analysis or Phylogenetic Comparative Methods (PCMs) are a set of statistical methods used by biologist, geneticist, and anthropologists to analyze phylogenetic trees and track/present species traits (Pennell & Harmon, 2013).\
 
@@ -79,7 +83,7 @@ ggt
 
 ## Creating Amin Acids (Polypeptide)
 ```{r}
-pat <- pcms_AAtree(fast_file)
+# pat <- pcms_AAtree(fast_file)
 ```
 
 ## Running PCMs
