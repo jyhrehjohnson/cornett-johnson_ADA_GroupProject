@@ -61,15 +61,36 @@ fast <- f_file(fast_file)
 ## Creating Amino Acids (Polypeptide)
 =======
 ### **By Hand** Preparing Fasta data for phylogenetic analysis\
-1. convert the .fasta file data to a string of amino acids (AA), i.e., a literal polypeptide chain in code. Cool shit, i know!
-```{r}
+For this example, we will be using the sonic fasta file included in this package (**SHH_Carnivora.fasta**).\
+**1. convert the .fasta file data to a string of amino acids (AA), i.e., a literal polypeptide chain in code.**\
+To do this, we first assign the link to the raw file to a value, then, using the `readAAStringSet()` function from the {Biostrings} package, convert the fasta file to an amino acid string set for each species included in the file (25 total). You can choose to keep the fasta format for the data with the `format = "fasta"` argument.
+```{r Read in the file}
 # read in sequences from .fasta file
 fas <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_Carnivora.fasta"
 #for reading multiple AA sequences from msa package
 file <- readAAStringSet(fas, format = "fasta", use.names = TRUE) # format: biostrings, AAString set
+```
 
+
+We can confirm our file was correctly converted using the base ***R*** `class()` function. The class should be "AAStringSet", attributed to the "Biostrings" package.
+```{r}
+class(file)
+# OUTPUT SHOULD BE THE BELOW:
+# "AAStringSet"
+# attr(,"package")
+# "Biostrings"
+```
+**2. Multiple Sequence Alignment (MSA)**\
+We next need to conduct a multiple sequence alignment (msa)--the alignment of 3 or more sequences of genetic material (DNA, RNA, or protein) to determine homology and evolutionary relationships--on our Shh amino acid sequences. We can do this using the `msa()` function from the {msa} package (package available from BioConductor; Bodenhofer et al., 2015). This function gives us the option to use one of three different algorithms, depending on the type of sequences being aligned. We will use the *MUSCLE* algorithm for our Shh protein sequences as this algorithm is especially good with proteins and our sequences are a medium/small size. Other algorithms options in the `msa()` function include *ClustalW* and *ClustalOmega*, both of which are good for all types of genetic material, especially those with medium to long sequences and many sequences being compared. You can learn more about multiple sequence alignments at the EMBL European Bioinformatics Institute's website: <https://www.ebi.ac.uk/Tools/msa/>.\
+In this function, we define the method as `method = c("Muscle")` since we are using the *MUSCLE* algorithm, the type of sequence as `type = "protein`,
+```{r}
+# multiple sequence alignment from msa package 
 #align the fasta file using MUSCLE algorithm
-fas_msa <-  msa(file, method = c("Muscle"), type = "protein", order=c("aligned", "input")) # multiple sequence alignment from msa package 
+fas_msa <-  msa(file, method = c("Muscle"), type = "protein", order=c("aligned", "input")) 
+```
+
+
+```{r}
 fas_AAbin <- as.AAbin(fas_msa, show.aa = TRUE, check.names = TRUE) # #read aligned data, converting to AAbin
 fas_AAch <- as.character.AAbin(fas_AAbin) #converting AAbin to character strings
 fas_align <- as.alignment(fas_AAch)
