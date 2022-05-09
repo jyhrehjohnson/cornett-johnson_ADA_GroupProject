@@ -32,10 +32,9 @@ require(ape) #phylo
 require(ggplot2)
 require(phangorn)
 require(phytools) 
-<<<<<<< HEAD
-=======
-# require(geomorph)
->>>>>>> dcc95e63d8c822fe469a8c9a5de3ccc59019d629
+#<<<<<<< HEAD
+#=======
+#>>>>>>> dcc95e63d8c822fe469a8c9a5de3ccc59019d629
 require(BiocManager) # to get packages from bioconductor (ie package not on CRAN)
 require(ggtree) # extension of ggplot to make phylo trees
 require(msa) # multiple sequence alignment
@@ -73,7 +72,7 @@ file <- readAAStringSet(fas, format = "fasta", use.names = TRUE) # format: biost
 
 
 We can confirm our file was correctly converted using the base ***R*** `class()` function. The class should be "AAStringSet", attributed to the "Biostrings" package.
-```{r}
+```{r check class}
 class(file)
 # OUTPUT SHOULD BE THE BELOW:
 # "AAStringSet"
@@ -82,14 +81,14 @@ class(file)
 ```
 **2. Multiple Sequence Alignment (MSA)**\
 We next need to conduct a multiple sequence alignment (msa)--the alignment of 3 or more sequences of genetic material (DNA, RNA, or protein) to determine homology and evolutionary relationships--on our Shh amino acid sequences. We can do this using the `msa()` function from the {msa} package (package available from BioConductor; Bodenhofer et al., 2015). This function gives us the option to use one of three different algorithms, depending on the type of sequences being aligned. We will use the *MUSCLE* algorithm for our Shh protein sequences as this algorithm is especially good with proteins and our sequences are a medium/small size. Other algorithms options in the `msa()` function include *ClustalW* and *ClustalOmega*, both of which are good for all types of genetic material, especially those with medium to long sequences and many sequences being compared. You can learn more about multiple sequence alignments at the EMBL European Bioinformatics Institute's website: <https://www.ebi.ac.uk/Tools/msa/>.\
-In this function, we define the method as `method = c("Muscle")` since we are using the *MUSCLE* algorithm, the type of sequence as `type = "protein`,
-```{r}
+In this function, we define the method as `method = c("Muscle")` since we are using the *MUSCLE* algorithm, and the type of sequence as `type = "protein`. The order argument refers to the order of the sequences in the output object. Here, the sequences will be ordered by how aligned they are then the input order (ie their order in the fasta file): `order = c("aligned", "input")`.
+```{r msa}
 # multiple sequence alignment from msa package 
 #align the fasta file using MUSCLE algorithm
 fas_msa <-  msa(file, method = c("Muscle"), type = "protein", order=c("aligned", "input")) 
 ```
 
-
+to be continued (Savvy)
 ```{r}
 fas_AAbin <- as.AAbin(fas_msa, show.aa = TRUE, check.names = TRUE) # #read aligned data, converting to AAbin
 fas_AAch <- as.character.AAbin(fas_AAbin) #converting AAbin to character strings
