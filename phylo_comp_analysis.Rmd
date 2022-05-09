@@ -42,7 +42,6 @@ For this project, we have included an example dataset to use with our PCMs packa
 ```{r}
 #load in the data
 f_name <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_orthologs_Carnivora.csv"
-#"https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_orthologs.csv" (switched out for the above)
 
 #use the function to read in the data and create the r dataset
 sonic <- read_file(f_name)
@@ -56,7 +55,7 @@ sonic <- read_file(f_name)
 ```
 **Plotting with plotTree**
 ```{r}
-#input plot function and discuss plotting ^^
+pt <- plot_Tree(tree)
 ```
 
 ## Interpreting PCMs Plots

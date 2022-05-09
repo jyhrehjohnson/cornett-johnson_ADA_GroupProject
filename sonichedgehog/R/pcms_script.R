@@ -46,14 +46,20 @@ pcms_AAtree <- function(f_name, ){
 AAbin_labs <- as.matrix(labels(fas_AAbin)) # extraction of the species names
 fas_AAbin <- dist.aa(fas_AAbin)
 tree <- nj(fas_AAbin)
-ggt<-ggtree(tree, cex = 0.8, aes(color=branch.length)) +
+ggt <-ggtree(tree, cex = 0.8, aes(color=branch.length)) +
   scale_color_continuous(high='lightskyblue1',low='coral4') +
   geom_tiplab(align=TRUE, size=2) +
   geom_treescale(y = - 5, color = "coral4", fontsize = 4)
 ggt
 
+
+
 #Plot the maximum likelihood
+plot_Tree <- function(tree){
+plotTree(tree, fsize=0.8,lwd=1,offset=1) #Plot the ML, set font size, create space so nodes aren't on top of each other 
+nodelabels(tree$node.label, adj = c(1, 0), frame = "none")
+return(plot_Tree)
+}
+
 plotTree(tree, fsize=0.8,lwd=1,offset=1) #Plot the ML, set font size, create space so nodes aren't on top of each other 
 nodelabels(tree$node.label, adj = c(1, 0), frame = "none") #label the nodes
-
-#pcms_plot <- function()
