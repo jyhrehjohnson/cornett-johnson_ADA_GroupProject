@@ -45,7 +45,18 @@ f_name <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_G
 
 #use the function to read in the data and create the r dataset
 sonic <- read_file(f_name)
+
+# read in sequences from .fasta file
+fast_file <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_Carnivora.fasta"
+
+fast <- f_file(fast_file)
 ```
+
+## Creating Amin Acids (Polypeptide)
+```{r}
+pat <- pcms_AAtree(fast_file)
+```
+
 ## Running PCMs
 
 ## Plotting PCMs\
