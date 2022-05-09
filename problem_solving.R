@@ -31,7 +31,7 @@ fas_AAmatrix <- as.matrix(fas_align) # converting alignment to matrix
 AAbin_labs <- as.matrix(labels(fas_AAbin)) # extraction of the species names
 fas_AAbin <- dist.aa(fas_AAbin)
 tree <- nj(fas_AAbin)
-ggt<-ggtree(tree, cex = 0.8, aes(color=branch.length)) +
+ggt <-ggtree(tree, cex = 0.8, aes(color=branch.length)) +
   scale_color_continuous(high='lightskyblue1',low='coral4') +
   geom_tiplab(align=TRUE, size=2) +
   geom_treescale(y = - 5, color = "coral4", fontsize = 4)

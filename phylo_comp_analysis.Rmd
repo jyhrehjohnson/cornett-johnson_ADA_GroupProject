@@ -26,14 +26,18 @@ require(withr) # to make package
 require(tidyverse)
 require(ape) #phylo
 require(ggplot2)
+require(phangorn)
+require(phytools) 
+require(geomorph)
 require(BiocManager) # to get packages from bioconductor (ie package not on CRAN)
 BiocManager::install("ggtree") # install ggTree package. will give two prompts, answer "all" and "yes" to them respectively
 require(ggtree) # extension of ggplot to make phylo trees
 BiocManager::install("msa") # install "msa" package.  will give two prompts, answer "all" and "yes" to them respectively
 require(msa) # multiple sequence alignment
-
 ```
+## Viewing the data
 
+For this project, we have included an example dataset to use with our PCMs package, *SHH_orthologs_Carnivora*, #explain the dataset 
 ```{r}
 #load in the data
 f_name <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_orthologs_Carnivora.csv"
@@ -42,12 +46,14 @@ f_name <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_G
 #use the function to read in the data and create the r dataset
 sonic <- read_file(f_name)
 ```
+## Running PCMs
+
+## Plotting PCMs
 ```{r}
-#My code from my data replication:
-#Plot the maximum likelihood
-plotTree(d1,fsize=0.8,lwd=1,offset=1) #Plot the ML, set font size, create space so nodes aren't on top of each other 
-nodelabels(d1$node.label, adj = c(1, 0), frame = "none") #label the nodes
+#input plot function and discuss plotting ^^
 ```
+## Interpreting PCMs Plots
+
 ## References\ 
 Pennell, M. W., & Harmon, L. J. (2013). An integrative view of phylogenetic comparative methods: Connections to population genetics, community ecology, and paleobiology: Integrative comparative methods. *Annals of the New York Academy of Sciences, 1289*(1), 90–105. <https://doi.org/10.1111/nyas.12157>\
 
