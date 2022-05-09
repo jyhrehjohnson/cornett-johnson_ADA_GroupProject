@@ -87,7 +87,7 @@ ggt
 ```
 
 
-## Creating Amin Acids (Polypeptide)
+## Creating Amino Acids (Polypeptide)
 >>>>>>> dcc95e63d8c822fe469a8c9a5de3ccc59019d629
 ```{r}
 # pat <- pcms_AAtree(fast_file)
