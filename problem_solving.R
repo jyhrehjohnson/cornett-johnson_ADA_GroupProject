@@ -1,14 +1,17 @@
 require(tidyverse)
-require(rentrez)
-require(devtools)
-require(usethis)
-require(devtools)
-require(roxygen2)
-require(withr)
+# require(devtools)
+#require(usethis)
+#require(devtools)
+#require(roxygen2)
+# require(withr)
 require(ape)
 require(phangorn)
 require(phytools) 
-require(geomorph)
+require(BiocManager) # to get packages from bioconductor (ie package not on CRAN)
+require(ggtree) # extension of ggplot to make phylo trees
+require(msa) # multiple sequence alignment
+require(Biostrings) # goes with the msa package
+require(ggplot2)
 
 # for installing packages from bioconductor
 BiocManager::install("ggtree") # install ggTree package. will give two prompts, answer "all" and "yes" to them respectively
@@ -56,11 +59,10 @@ nodelabels(tree$node.label, adj = c(1, 0), frame = "none") #label the nodes
 
 
 
-# troubleshooting ----
-#this doesn't work, but the above version does?????
+# %>%  version fucken works bby! ----
 fas_msa <- msa(file, method = c("Muscle"), type = "protein", order=c("aligned", "input")) # multiple sequence alignment from msa package 
-dist_fas_msa <- fas_msa %>% as.AAbin(show.aa = TRUE, check.names = TRUE) %>% 
-  dist.aa() # #read aligned data, converting to AAbin
+dist_fas_msa <- fas_msa %>% as.AAbin(show.aa = TRUE, check.names = TRUE) %>% #read aligned data, converting to AAbin
+  dist.aa() # branch length calculations
 fas_msa <- fas_msa %>% as.AAbin(show.aa = TRUE, check.names = TRUE) %>% 
   as.character.AAbin() %>% #converting AAbin to character strings
   as.alignment() %>% 
@@ -68,6 +70,9 @@ fas_msa <- fas_msa %>% as.AAbin(show.aa = TRUE, check.names = TRUE) %>%
  
 
 tree <- nj(dist_fas_msa)
+tree # gives tree details
+plot(tree) # gives a hard to read version of the tree (nice!)
+
 
 # somehow at this step, i'm getting a lot of data loss (ie only one sequence still has AA in it when i get to the matrix)
 fas_align <- as.alignment(fas_AAch)
