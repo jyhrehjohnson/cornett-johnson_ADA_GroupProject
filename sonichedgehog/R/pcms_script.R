@@ -15,7 +15,7 @@
 
 #Create a function that reads in the file information----
 read_file <- function(f_name){
-  data <-read_csv(f_name, col_names = TRUE)
+  data <-tidyverse::read_csv(f_name, col_names = TRUE)
   return(data)
 }
 # fxn to read in multiple AA sequences----
@@ -26,7 +26,7 @@ f_file <- function(fast_file){
 }
 
 # building a function to make a polypeptide (Amino Acid) sequence phylogenetic tree from data in fasta file
-# pcms_AAtree <- function(fast_file){
+# pcms_AAtree <- function(fast_file){ # commented out until completed because otherwise prevents from knitting
 #   #for reading multiple AA sequences from msa package
 #   #fas <- readAAStringSet(fas_file, format = "fasta", use.names = TRUE)
 #   #align the fasta file using MUSCLE algorithm: multiple sequence alignment from msa package 
