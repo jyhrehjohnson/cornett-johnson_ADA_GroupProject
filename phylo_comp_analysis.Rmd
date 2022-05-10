@@ -41,7 +41,7 @@ require(msa) # multiple sequence alignment
 
 For this project, we have included an example dataset to use with our PCMs package, *SHH_orthologs_Carnivora* (sonic), sonic is a dataset of Sonic hedgehog (Shh) gene orthologs from species of order Carnivora, a group of placental mammals specialized in eating flesh. These orthologs were retrieved from NCBI gene database. Included in it are the following for each species, 25 total: GeneID, GeneSymbol, Scientific_name, Common_name, Description of the polymer molecule, RefSeq_Transcript_Accessions, RefSeq_Protein_Accessions, and Peptide_Sequences from the respective protein accession. Additionally, the amino acid (peptide) sequences for each species Shh is included in fasta format in the file SHH_Carnivora.fasta. This file is a more accessible way to use the peptide sequences from the sonic dataset as an example.
 
-```{r}
+```{r explain functions (j)}
 #load in the data
 f_name <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_orthologs_Carnivora.csv"
 
@@ -62,9 +62,9 @@ For this example, we will be using the sonic fasta file included in this package
 To do this, we first assign the link to the raw file to a value, then, using the `readAAStringSet()` function from the {Biostrings} package, convert the fasta file to an amino acid string set for each species included in the file (25 total). You can choose to keep the fasta format for the data with the `format = "fasta"` argument.
 ```{r Read in the file}
 # read in sequences from .fasta file
-fas <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_Carnivora.fasta"
+SHH <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_Carnivora.fasta"
 #for reading multiple AA sequences from msa package
-file <- Biostrings::readAAStringSet(fas, format = "fasta", use.names = TRUE) # format: biostrings, AAString set
+file <- readAAStringSet(fas, format = "fasta", use.names = TRUE) # format: biostrings, AAString set
 ```
 
 
@@ -99,10 +99,18 @@ tree <- nj(fas_AAbin)
 
 ## Creating Amino Acids (Polypeptide)
 ```{r}
-# pat <- pcms_AAtree(fast_file)
+pat <- pcms_AlignAA(fast_file)
+pat # prints the MUSCLE alignment
+class(pat) # "MsaAAMultipleAlignment"
 ```
 
 ## Running PCMs
+```{r}
+ptree <- pcms_treeAA(pat)
+ptree
+class(ptree)
+```
+
 
 ## Plotting PCMs\
 **Plotting Neighbor Joining with ggtree**
@@ -115,7 +123,7 @@ ggt
 ```
 **Plotting Maximum Likelihood with plotTree**
 ```{r}
-pt <- plot_Tree(tree)
+pt <- plot_Tree(tree) # explain function (J)
 ```
 
 ## Interpreting PCMs Plots
