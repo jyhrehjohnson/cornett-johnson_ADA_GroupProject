@@ -50,8 +50,8 @@ pcms_treeAA <- function(pat){
   dist_fas_msa <- pat %>% ape::as.AAbin(show.aa = TRUE, check.names = TRUE) %>% 
     ape::dist.aa()
   #neighbor joining method
-  tree <- nj(dist_fas_msa)
-  ggt <-ggtree(tree, cex = 0.8, aes(color=branch.length)) +
+  tree <- ape::nj(dist_fas_msa)
+  ggt <- ggtree::ggtree(tree, cex = 0.8, aes(color=branch.length)) +
     scale_color_continuous(high='green',low='blue') +
     geom_tiplab(align=FALSE, size=2) +
     geom_treescale(y = 0, color = "coral4", fontsize = 4)
