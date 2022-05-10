@@ -45,24 +45,28 @@ ggt <-ggtree(tree, cex = 0.8, aes(color = branch.length)) +
 ggt
 
 
+# building a function to make a polypeptide (Amino Acid) sequence phylogenetic tree from data in fasta file
+pcms_AAtree <- function(fast_file){ # commented out until completed because otherwise prevents from knitting
+  #for reading multiple AA sequences from msa package
+  fas <- readAAStringSet(fas_file, format = "fasta", use.names = TRUE)
+  #align the fasta file using MUSCLE algorithm: multiple sequence alignment from msa package 
+  msa::msa(fas, method = c("Muscle"), type = "protein", order=c("aligned", "input"))
+  #read aligned data, storing in AAbin format (class will be AAbin) (ape package)
+  ape::as.AAbin(fast, show.aa = TRUE, check.names = TRUE)
+  return(fast_file)
+}
+
+
 #Plot the maximum likelihood ---
 plotTree(tree, fsize=0.8,lwd=1,offset=1) #Plot the ML, set font size, create space so nodes aren't on top of each other 
 nodelabels(tree$node.label, adj = c(1, 0), frame = "none") #label the nodes
-
-## an<-as.alignment(nbin)  #converting DNAbin to alignment format
-## nm<-as.matrix(an)       #converting alignment to matrix
-# nbinmat<-as.matrix(labels(nbin)) #extraction of the sample names
-# nbin
-# class(nbin)
-# dnbin<-dist.dna(nbin, model = "K80") #computing distance by ape package with K80 model derived by Kimura (1980)
-# tree<-nj(dnbin)
-
 
 
 # %>%  version fucken works bby! ----
 fas_msa <- msa(file, method = c("Muscle"), type = "protein", order=c("aligned", "input")) # multiple sequence alignment from msa package 
 dist_fas_msa <- fas_msa %>% as.AAbin(show.aa = TRUE, check.names = TRUE) %>% #read aligned data, converting to AAbin
   dist.aa() # branch length calculations
+
 fas_msa <- fas_msa %>% as.AAbin(show.aa = TRUE, check.names = TRUE) %>% 
   as.character.AAbin() %>% #converting AAbin to character strings
   as.alignment() %>% 
