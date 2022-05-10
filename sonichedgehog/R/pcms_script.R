@@ -15,7 +15,7 @@
 
 #Create a function that reads in the file information----
 read_file <- function(f_name){
-  data <-tidyverse::read_csv(f_name, col_names = TRUE)
+  data <-readr::read_csv(f_name, col_names = TRUE)
   return(data)
 }
 # fxn to read in multiple AA sequences----
@@ -53,7 +53,6 @@ f_file <- function(fast_file){
 
 #Plot the maximum likelihood----
 plot_Tree <- function(tree){
-plotTree(tree, fsize=0.8,lwd=1,offset=1) #Plot the ML, set font size, create space so nodes aren't on top of each other 
-nodelabels(tree$node.label, adj = c(1, 0), frame = "none") #Label the nodes
+phytools::plotTree(tree, fsize=0.8,lwd=1,offset=3) #Plot the ML, set font size, create space so nodes aren't on top of each other 
 }
 

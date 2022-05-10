@@ -10,7 +10,8 @@ vignette: >
 *Collaborators: Savvy Cornett & Jyhreh Johnson*
 
 ```{r}
-source("~/Desktop/Applied-Data-Analysis/cornett-johnson_ADA_GroupProject/sonichedgehog/R/pcms_script.R")
+#source("~/Desktop/Applied-Data-Analysis/cornett-johnson_ADA_GroupProject/sonichedgehog/R/pcms_script.R")
+source("~/Documents/Documents/UT/class_folders/ada/cornett-johnson_ADA_GroupProject/sonichedgehog/R/pcms_script.R")
 ```
 
 ## Background
@@ -32,9 +33,6 @@ require(ape) #phylo
 require(ggplot2)
 require(phangorn)
 require(phytools) 
-#<<<<<<< HEAD
-#=======
-#>>>>>>> dcc95e63d8c822fe469a8c9a5de3ccc59019d629
 require(BiocManager) # to get packages from bioconductor (ie package not on CRAN)
 require(ggtree) # extension of ggplot to make phylo trees
 require(msa) # multiple sequence alignment
@@ -56,9 +54,8 @@ fast_file <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_AD
 fast <- f_file(fast_file)
 ```
 
-<<<<<<< HEAD
 ## Creating Amino Acids (Polypeptide)
-=======
+
 ### **By Hand** Preparing Fasta data for phylogenetic analysis\
 For this example, we will be using the sonic fasta file included in this package (**SHH_Carnivora.fasta**).\
 **1. convert the .fasta file data to a string of amino acids (AA), i.e., a literal polypeptide chain in code.**\
@@ -67,7 +64,7 @@ To do this, we first assign the link to the raw file to a value, then, using the
 # read in sequences from .fasta file
 fas <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_Carnivora.fasta"
 #for reading multiple AA sequences from msa package
-file <- readAAStringSet(fas, format = "fasta", use.names = TRUE) # format: biostrings, AAString set
+file <- Biostrings::readAAStringSet(fas, format = "fasta", use.names = TRUE) # format: biostrings, AAString set
 ```
 
 
@@ -98,17 +95,9 @@ fas_AAmatrix <- as.matrix(fas_align) # converting alignment to matrix
 AAbin_labs <- as.matrix(labels(fas_AAbin)) # extraction of the species names
 fas_AAbin <- dist.aa(fas_AAbin)
 tree <- nj(fas_AAbin)
-
-ggt <-ggtree(tree, cex = 0.8, aes(color = branch.length)) +
-  scale_color_continuous(high='green',low='blue') +
-  geom_tiplab(align = TRUE, size = 4) +
-  geom_treescale(y = - 5, color = "coral4", fontsize = 4)
-ggt
 ```
 
-
 ## Creating Amino Acids (Polypeptide)
->>>>>>> dcc95e63d8c822fe469a8c9a5de3ccc59019d629
 ```{r}
 # pat <- pcms_AAtree(fast_file)
 ```
@@ -116,11 +105,15 @@ ggt
 ## Running PCMs
 
 ## Plotting PCMs\
-**Plotting with ggtree**
+**Plotting Neighbor Joining with ggtree**
 ```{r}
-#input plot function and discuss plotting ^^
+ggt <-ggtree(tree, cex = 0.8, aes(color = branch.length)) +
+  scale_color_continuous(high='green',low='blue') +
+  geom_tiplab(align = FALSE, size = 4) +
+  geom_treescale(y = - 5, color = "coral4", fontsize = 2)
+ggt
 ```
-**Plotting with plotTree**
+**Plotting Maximum Likelihood with plotTree**
 ```{r}
 pt <- plot_Tree(tree)
 ```
