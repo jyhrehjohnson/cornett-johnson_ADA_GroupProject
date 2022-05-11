@@ -46,7 +46,7 @@ f_file <- function(fast_file){
 #' @keywords # to aid in searching functions
 #' @export # makes the function available for others to use when your package is loaded
 #' @examples # sample code
- pcms_AlignAA <- function(file){
+pcms_AlignAA <- function(file){
    #for reading multiple AA sequences from msa package
    fas <- Biostrings::readAAStringSet(file, format = "fasta", use.names = TRUE)
    # align the fasta file using MUSCLE algorithm: multiple sequence alignment from msa package 
@@ -74,7 +74,6 @@ pcms_treeAA <- function(x){#the input to this function is the out put of the abo
     geom_treescale(y = 0, color = "coral4", fontsize = 4)
   return(ggt)
 }
-
 
 #Plot the maximum likelihood----
 #' @title read_file

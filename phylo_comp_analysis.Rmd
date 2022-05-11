@@ -40,14 +40,14 @@ require(msa) # multiple sequence alignment
 
 
 ## Package Datasets\
-For this project, we have included an example dataset to use with our PCMs package, **sonic**, sonic is a dataset of Sonic hedgehog signalling molecule (Shh) orthologs from species of order Carnivora, a group of placental mammals specialized in eating flesh. The outgroup of this dataset is the insectivore *Erinaceus europaeus* (western european hedgehog). These orthologs were retrieved from NCBI gene database. This gene plays a very important role in body patterning of the ventral neural tube and anterior-posterior limb axes during embryogenesis in vertebrates and invertebrates. Included in it are the following for each species, 25 total: GeneID, GeneSymbol, Scientific_name, Common_name, Description of the polymer molecule, RefSeq_Transcript_Accessions, RefSeq_Protein_Accessions, and Peptide_Sequences from the respective protein accession. Additionally, the amino acid (peptide) sequences for each species Shh is included in fasta format in the file **Shh_fasta**. This file is a more accessible way to use the peptide sequences from the sonic dataset as an example.\
+For this project, we have included an example dataset to use with our PCMs package, **sonic**, sonic is a dataset of Sonic hedgehog signalling molecule (Shh) orthologs from species of order Carnivora, a group of placental mammals specialized in eating flesh. The outgroup of this dataset is the insectivore *Erinaceus europaeus* (western european hedgehog). These orthologs were retrieved from NCBI gene database. This gene plays a very important role in body patterning of the ventral neural tube and anterior-posterior limb axes during embryogenesis in vertebrates and invertebrates. Included in it are the following for each species, 25 total: GeneID, GeneSymbol, Scientific_name, Common_name, Description of the polymer molecule, RefSeq_Transcript_Accessions, Base_pairs (count) in gene,  RefSeq_Protein_Accessions, Amino_acids (count) in protein, and Peptide_Sequences from the respective protein accession. Additionally, the amino acid (peptide) sequences for each species Shh is included in fasta format in the file **Shh_fasta**. This file is a more accessible way to use the peptide sequences from the sonic dataset as an example.\
 ```{r explain functions (j)}
 #load in the data
 f_name <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_orthologs_Carnivora.csv"
 
 #use the function to read in the data and create the r dataset
 sonic <- read_file(f_name)
-sonic
+head(sonic)
 ```
 
 ## Phylogenetic analysis\
@@ -61,6 +61,7 @@ To do this, we first assign the link to the raw file to a value, then, using the
 fasta <- "https://raw.githubusercontent.com/jyhrehjohnson/cornett-johnson_ADA_GroupProject/main/SHH_Carnivora.fasta"
 #for reading multiple AA sequences from msa package
 file <- readAAStringSet(fasta, format = "fasta", use.names = TRUE) # format: biostrings, AAString set
+file # shows the width of each 
 ```
 We can confirm our file was correctly converted using the base ***R*** `class()` function. The class should be "AAStringSet", attributed to the "Biostrings" package.
 ```{r check class}
@@ -87,7 +88,8 @@ In this function, we define the method as `method = c("Muscle")` since we are us
 library(msa)
 # multiple sequence alignment from msa package 
 #align the fasta file using MUSCLE algorithm
-fas_msa <-  msa(file, method = c("Muscle"), type = "protein", order=c("aligned", "input"))
+fas_msa <-  msa(file, method = c("Muscle"), cluster = "default", type = "protein", verbose = TRUE, maxiters = 16)
+print(fsa_msa, showConsensus = TRUE, show = "complete")
 ```
 2A. check the class of the msa output:
 ```{r check msa class}
@@ -147,7 +149,8 @@ ggt <-ggtree(tree, cex = 0, aes(color = branch.length), root.position = 0) +
   scale_color_continuous(high = 'green', low = 'darkgreen') + 
   theme(legend.position ="left") +
   geom_tiplab(align = FALSE, size = 4) +
-  geom_treescale(x = 0, y = 0, color = "black", fontsize =3)
+  geom_treescale(x = 0, y = 0, color = "black", fontsize =3)+
+  #root = [1]
 ggt
 ```
 **Plotting Maximum Likelihood with plotTree**
