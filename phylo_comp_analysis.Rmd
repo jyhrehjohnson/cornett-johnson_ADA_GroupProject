@@ -88,8 +88,8 @@ In this function, we define the method as `method = c("Muscle")` since we are us
 library(msa)
 # multiple sequence alignment from msa package 
 #align the fasta file using MUSCLE algorithm
-fas_msa <-  msa(file, method = c("Muscle"), cluster = "default", type = "protein", verbose = TRUE, maxiters = 16)
-print(fsa_msa, showConsensus = TRUE, show = "complete")
+fas_msa <-  msa(file, method = c("Muscle"), cluster = "default", type = "protein", verbose = TRUE) # if you run this operation more than 16 times in a single session, will stop working (SetIdCount Error). To fix this, save everything, close the r-session, then re-open the r-session. It will work again after this.
+print(fas_msa, showConsensus = TRUE, show = "complete")
 ```
 2A. check the class of the msa output:
 ```{r check msa class}
@@ -110,21 +110,27 @@ Here we will be storing the now `MsaAAMultipleAlignment` data as a matrix in an 
 ```{r Step 3 AAbin}
 library(ape)
 fas_AAbin <- as.AAbin(fas_msa, show.aa = TRUE, check.names = TRUE)
+fas_AAbin # prints the details of the info stored in the AAbin matrix
 class(fas_AAbin) # AAbin
 ```
 
 
 **4. Calculating the phylogenetic distances between sequences**\
-In order to to make a phylogenetic tree with our data, we need to calculate the number of AA differences between each pair of sequences in a matrix. This function can only be run on data in an "AAbin". Within this function are two arguments:\
+In order to to make a phylogenetic tree with our data, we need to calculate the number of AA differences between each pair of sequences in a matrix. **NOTE:** This function can only be run on data in an "AAbin". Within this function are two arguments:\
 - ` pairwise.deletion =` a logical indicating whether to delete the sites with missing data in a pairwise way (by default, sites with at least one missing data for all sequences are deleted), and\
 - `scaled =` a logical value specifying whether to scale the number of AA differences by the sequence length (Paradis & Schliep, 2019).
-```{r}
+```{r AA distances}
 dist_fas_AAbin <- dist.aa(fas_AAbin, pairwise.deletion = TRUE, scaled = TRUE)
+dist_fas_AAbin #prints the scaled distances matrix
+class(dist_fas_AAbin) #dist matrix
+```
 
 
-
+**5. Make a phylogenetic tree using the Neighbor-Joining Method**
+```{r}
 tree <- nj(dist_fas_AAbin)
 tree
+class(tree) #phylo 
 ```
 
 ### **Using {sonichedgehog} functions** 
@@ -162,6 +168,8 @@ pt <- plot_Tree(tree) # explain function (J)
 
 ## References\ 
 Bodenhofer, U., Bonatesta, E., Horejš-Kainrath, C., & Hochreiter, S. (2015). Msa: An r package for multiple sequence alignment. *Bioinformatics*, btv494. <https://doi.org/10.1093/bioinformatics/btv494>.\
+- Edgar, R. C. (2004) MUSCLE: multiple sequence alignment with high accuracy and high throughput. *Nucleic Acids Res. 32*(5):1792-1797. DOI: 10.1093/nar/gkh340.\
+- Edgar, R. C. (2004) MUSCLE: a multiple sequence alignment method with reduced time and space complexity. *BMC Bioinformatics 5*:113. DOI: 10.1186/1471-2105-5-113.\
 
 Pennell, M. W., & Harmon, L. J. (2013). An integrative view of phylogenetic comparative methods: Connections to population genetics, community ecology, and paleobiology: Integrative comparative methods. *Annals of the New York Academy of Sciences, 1289*(1), 90–105. <https://doi.org/10.1111/nyas.12157>.\
 
