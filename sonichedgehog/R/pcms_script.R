@@ -65,7 +65,7 @@ pcms_treeAA <- function(x){#the input to this function is the out put of the abo
   class(x) == "MsaAAMultipleAlignment"
   #read aligned data, storing in AAbin format (class will be AAbin) (ape package)
   dist_fas_msa <- x %>% ape::as.AAbin(show.aa = TRUE, check.names = TRUE) %>% # AAbin storage
-    ape::dist.aa() # distance AA
+    ape::dist.aa(pairwise.deletion = TRUE, scaled = TRUE) # distance AA
   #neighbor joining method
   tree <- ape::nj(dist_fas_msa) # new tree
   ggt <- ggtree::ggtree(tree, cex = 1, aes(color=branch.length)) +
