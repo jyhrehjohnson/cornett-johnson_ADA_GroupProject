@@ -28,11 +28,10 @@ require(usethis) # to make package
 require(roxygen2) # to make package
 require(withr) # to make package
 # for our package
-require(tidyverse)
-require(ape) #phylo
-require(ggplot2)
-require(phangorn)
-require(phytools) 
+#require(tidyverse)
+#require(ape) #phylo
+#require(ggplot2)
+#require(phytools) 
 require(BiocManager) # to get packages from bioconductor (ie package not on CRAN)
 require(ggtree) # extension of ggplot to make phylo trees
 require(msa) # multiple sequence alignment
@@ -127,6 +126,7 @@ class(dist_fas_AAbin) #dist matrix
 
 
 **5. Make a phylogenetic tree using the Neighbor-Joining Method**
+T
 ```{r}
 tree <- nj(dist_fas_AAbin)
 tree # details about the phylogenetic tree
@@ -159,9 +159,10 @@ class(ptree)
 ## Plotting PCMs\
 **Plotting Neighbor Joining with ggtree**
 ```{r}
-ggt <- ggtree(tree, cex = 0.8, aes(color = branch.length)) +
+ggt <- ggtree(tree, cex = 1, aes(color = branch.length), layout = "roundrect") +
   scale_color_continuous(high = 'green', low = 'darkgreen') + 
-  theme(legend.position ="left") +
+  #scale_color_continuous(type = "viridis") +
+  theme(legend.position = "left") +
   geom_tiplab(align = FALSE, size = 3) +
   geom_treescale(x = 0, y = 0, color = "black", fontsize =3)
 ggt
